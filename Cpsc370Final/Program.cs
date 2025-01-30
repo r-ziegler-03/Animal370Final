@@ -6,7 +6,9 @@ class Program
     {
         if (args.Length < 1)
             Console.WriteLine("Usage: Cpsc370Final <arguments>");
-        
+    
+        //testing the ai portion
+        HangmanAI.SolvePuzzle("elephant", 6);
         // you can delete this if/when you like
         ShowArguments(args);
     }
