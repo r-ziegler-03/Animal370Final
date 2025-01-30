@@ -24,4 +24,11 @@
       <ProjectReference Include="..\Cpsc370Final\Cpsc370Final.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="..\Cpsc370Final\words_alpha.txt">
+        <Link>words_alpha.txt</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
