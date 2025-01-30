@@ -38,5 +38,27 @@ public class GuessManager
         guessedLetters.Add(letter);
         return (mysteryWord.Contains(letter));
     }
+    
+    //displays the current guess the user has
+    public string DisplayWord(string totallyRandomWord, List<char> letters)
+    {
+        string currentGuess = "";
+        //compares each char in the list of guesses with each letter in the random word
+        foreach (char letter in totallyRandomWord)
+        {
+            //if it contains the letter add it to the string
+            if (letters.Contains(letter))
+            {
+                currentGuess += letter;
+            }
+            //if not, add a "_" which represents an unguessed letter
+            else
+            {
+                currentGuess += "_";
+            }
+        }
+        //return the current guess
+        return currentGuess;
+    }
 
 }
