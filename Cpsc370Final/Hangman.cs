@@ -2,7 +2,31 @@ namespace Cpsc370Final;
 
 public class Hangman
 {
-    public string DrawHangman(int remainingAttemps)
+    public static string guessProgress { get; private set; }
+    public static string DisplayStatus(int remainingGuesses)
+    {
+        string result = "";
+        result = result + DrawHangman(remainingGuesses) + "\n";
+        result = result + DisplayGuessProgress() + "\n";
+        result = result + DisplayIncorrectGuesses() + "\n";
+        return result;
+    }
+
+    private static string DisplayIncorrectGuesses()
+    {
+        string result = "Your incorrect guesses are: ";
+        if (GuessManager.GetIncorrectGuesses() == null)
+        {
+            return result;
+        }
+        foreach (char guess in GuessManager.GetIncorrectGuesses())
+        {
+            result = result + guess + " ";
+        }
+        return result;
+    }
+
+    private static string DrawHangman(int remainingAttemps)
     {
         switch (remainingAttemps)
         {
@@ -29,7 +53,28 @@ public class Hangman
             case 10:
                 return "\t_________\n\t|\t |\n\t|        |\n\t|      \n\t|\t\n\t|\t \n\t|        \n\t|\n\t|\n________|_________";
         }
-
-        return "Not a valid number";
+        return "";
     }
+
+    public static string DisplayGuessProgress()
+    {
+        List<char> guesses = GuessManager.GetGuessedLetters();
+        string mysteryWord = PlayerTurns.mysteryWord;
+        guessProgress = "";
+
+        foreach (char letter in mysteryWord)
+        {
+            if (guesses !=  null && guesses.Contains(letter))
+            {
+                guessProgress += letter;
+            }
+            else
+            {
+                guessProgress += "_ ";
+            }
+        }
+
+        return guessProgress;
+    }
+
 }

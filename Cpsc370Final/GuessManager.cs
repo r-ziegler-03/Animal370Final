@@ -2,13 +2,13 @@ namespace Cpsc370Final;
 
 public class GuessManager
 {
-    private static List<char> guessedLetters;
-    private static string mysteryWord;
-    
-    public GuessManager(string word)
+    private static List<char> guessedLetters = new List<char>();
+    private static List<char> incorrectGuesses = new List<char>();
+
+    public GuessManager()
     {
-        guessedLetters = new List<char>();
-        mysteryWord = word.ToLower();
+        //guessedLetters = new List<char>();
+        //incorrectGuesses = new List<char>();
     }
 
     public static bool IsValidGuess(string guess)
@@ -24,41 +24,33 @@ public class GuessManager
             Console.WriteLine("Invalid Guess. Please enter a letter.");
             return false;
         }
-        if (guessedLetters.Contains(letter))
+        if (guessedLetters != null && guessedLetters.Contains(letter))
         {
             Console.WriteLine("You've already guessed this letter. Please enter a new one.");
             return false;
         }
         return true;
     }
-    
+
     public static bool GuessLetter(string guess)
     {
         char letter = char.ToLower(guess[0]);
         guessedLetters.Add(letter);
-        return (mysteryWord.Contains(letter));
-    }
-    
-    //displays the current guess the user has
-    public string DisplayWord(string totallyRandomWord, List<char> letters)
-    {
-        string currentGuess = "";
-        //compares each char in the list of guesses with each letter in the random word
-        foreach (char letter in totallyRandomWord)
+        if (!PlayerTurns.mysteryWord.Contains(letter))
         {
-            //if it contains the letter add it to the string
-            if (letters.Contains(letter))
-            {
-                currentGuess += letter;
-            }
-            //if not, add a "_" which represents an unguessed letter
-            else
-            {
-                currentGuess += "_";
-            }
+            incorrectGuesses.Add(letter);
+            return false;
         }
-        //return the current guess
-        return currentGuess;
+        return true;
     }
 
+    public static List<char> GetGuessedLetters()
+    {
+        return guessedLetters;
+    }
+    
+    public static List<char> GetIncorrectGuesses()
+    {
+        return incorrectGuesses;
+    }
 }
