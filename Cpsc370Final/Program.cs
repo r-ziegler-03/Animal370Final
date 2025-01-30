@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        /*
         if (args.Length < 1)
             Console.WriteLine("Usage: Cpsc370Final <arguments>");
     
@@ -11,6 +12,9 @@ class Program
         HangmanAI.SolvePuzzle("elephant", 6);
         // you can delete this if/when you like
         ShowArguments(args);
+        */
+        PlayerTurns.SetupGame("Hello");
+        PlayerTurns.RunGame();
     }
 
     // this is just an example of how to get the command
