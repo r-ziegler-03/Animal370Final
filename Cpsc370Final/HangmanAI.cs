@@ -1,4 +1,4 @@
-﻿namespace HangmanAI;
+﻿namespace Cpsc370Final;
 
 public static class HangmanAI
 {
