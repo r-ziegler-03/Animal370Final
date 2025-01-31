@@ -3,12 +3,11 @@ using System.Security.Cryptography;
 namespace Cpsc370Final;
 
 public class WordGenerator
-{
-    public static List<string> WordList { get; }
-    public static string RandomWord { get; private set; }
-    public static int randomNumber { get; private set; }
+{ 
+    public string RandomWord { get; private set; }
+    public int randomNumber { get; private set; }
     
-    public static string GenerateWordForGame(Random random)
+    public string GenerateWordForGame(Random random)
     {
         List<string> WordList = new List<string>
         {

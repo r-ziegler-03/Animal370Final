@@ -7,15 +7,17 @@ public class GuessManager_Tests
     [Fact]
     public void GuessLetterTest()
     {
-        PlayerTurns.SetupGame("apple");
-        bool result = GuessManager.GuessLetter("A");
+        PlayerTurns testGame = new PlayerTurns();
+        testGame.SetupGame("apple");
+        bool result = testGame.guessManager.GuessLetter("A");
         Assert.True(result);
     }
 
     [Fact]
     public void TestForValidGuess()
     {
-        bool result = GuessManager.IsValidGuess("a");
+        PlayerTurns testGame = new PlayerTurns();
+        bool result = testGame.guessManager.IsValidGuess("a");
         Assert.True(result);
     }
     
@@ -28,9 +30,10 @@ public class GuessManager_Tests
     [InlineData("b")]
     public void TestForInvalidGuess(string guess)
     {
-        PlayerTurns.SetupGame("apple");
-        GuessManager.GuessLetter("b");
-        bool result = GuessManager.IsValidGuess(guess);
+        PlayerTurns testGame = new PlayerTurns();
+        testGame.SetupGame("apple");
+        testGame.guessManager.GuessLetter("b");
+        bool result = testGame.guessManager.IsValidGuess(guess);
         Assert.False(result);
     }
 }

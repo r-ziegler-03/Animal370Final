@@ -2,16 +2,19 @@ namespace Cpsc370Final;
 
 public class GuessManager
 {
-    private static List<char> guessedLetters = new List<char>();
-    private static List<char> incorrectGuesses = new List<char>();
+    public  List<char> guessedLetters { get; private set; }
+    public  List<char> incorrectGuesses {get; private set;}
+    
+    private PlayerTurns playerTurns;
 
-    public GuessManager()
+    public GuessManager(PlayerTurns playerTurns)
     {
-        //guessedLetters = new List<char>();
-        //incorrectGuesses = new List<char>();
+        guessedLetters = new List<char>();
+        incorrectGuesses = new List<char>();
+        this.playerTurns = playerTurns;
     }
 
-    public static bool IsValidGuess(string guess)
+    public bool IsValidGuess(string guess)
     {
         if (guess.Length != 1)
         {
@@ -32,25 +35,15 @@ public class GuessManager
         return true;
     }
 
-    public static bool GuessLetter(string guess)
+    public bool GuessLetter(string guess)
     {
         char letter = char.ToLower(guess[0]);
         guessedLetters.Add(letter);
-        if (!PlayerTurns.mysteryWord.Contains(letter))
+        if (!playerTurns.mysteryWord.Contains(letter))
         {
             incorrectGuesses.Add(letter);
             return false;
         }
         return true;
-    }
-
-    public static List<char> GetGuessedLetters()
-    {
-        return guessedLetters;
-    }
-    
-    public static List<char> GetIncorrectGuesses()
-    {
-        return incorrectGuesses;
     }
 }
