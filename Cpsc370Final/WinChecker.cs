@@ -2,20 +2,28 @@ namespace Cpsc370Final;
 
 public class WinChecker
 {
+    private Hangman hangman;
+    private PlayerTurns playerTurns;
+
+    public WinChecker(Hangman hangman, PlayerTurns playerTurns)
+    { 
+        this.hangman = hangman;
+        this.playerTurns = playerTurns;
+    }
     
-    public static bool IsGameOver()
+    public bool IsGameOver()
     {
         
-        if (Hangman.DisplayGuessProgress() == PlayerTurns.mysteryWord)
+        if (hangman.DisplayGuessProgress() == playerTurns.mysteryWord)
         {
-            Console.WriteLine("Guesser won! The word was: " + PlayerTurns.mysteryWord);
+            Console.WriteLine("Guesser won! The word was: " + playerTurns.mysteryWord);
             return true;
         }
 
-        if (PlayerTurns.playerLives <= 0)
+        if (playerTurns.playerLives <= 0)
         {
-            Console.WriteLine(Hangman.DisplayStatus(0));
-            Console.WriteLine("Guesser lost! The word was: " + PlayerTurns.mysteryWord);
+            Console.WriteLine(hangman.DisplayStatus(0));
+            Console.WriteLine("Guesser lost! The word was: " + playerTurns.mysteryWord);
             return true;
         }
         return false;

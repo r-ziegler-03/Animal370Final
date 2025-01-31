@@ -15,7 +15,8 @@ public class UnitTestWordGenerator
     public void GeneratesWordForGame()
     {
         var random = new Random(0);
-        var word = WordGenerator.GenerateWordForGame(random);
+        WordGenerator test = new WordGenerator();
+        var word = test.GenerateWordForGame(random);
         Assert.Equal("pencil", word);
         
         _testOutputHelper.WriteLine(word);

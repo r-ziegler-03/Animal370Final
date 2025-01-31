@@ -2,8 +2,16 @@ namespace Cpsc370Final;
 
 public class Hangman
 {
-    public static string guessProgress { get; private set; }
-    public static string DisplayStatus(int remainingGuesses)
+    public string guessProgress { get; private set; }
+    private GuessManager guessManager;
+    private PlayerTurns playerTurns;
+
+    public Hangman(GuessManager guessManager, PlayerTurns playerTurns)
+    {
+        this.guessManager = guessManager;
+        this.playerTurns = playerTurns;
+    }
+    public string DisplayStatus(int remainingGuesses)
     {
         string result = "";
         result = result + DrawHangman(remainingGuesses) + "\n";
@@ -12,21 +20,21 @@ public class Hangman
         return result;
     }
 
-    private static string DisplayIncorrectGuesses()
+    private string DisplayIncorrectGuesses()
     {
         string result = "Your incorrect guesses are: ";
-        if (GuessManager.GetIncorrectGuesses() == null)
+        if (guessManager.incorrectGuesses == null)
         {
             return result;
         }
-        foreach (char guess in GuessManager.GetIncorrectGuesses())
+        foreach (char guess in guessManager.incorrectGuesses)
         {
             result = result + guess + " ";
         }
         return result;
     }
 
-    private static string DrawHangman(int remainingAttemps)
+    private string DrawHangman(int remainingAttemps)
     {
         switch (remainingAttemps)
         {
@@ -56,10 +64,10 @@ public class Hangman
         return "";
     }
 
-    public static string DisplayGuessProgress()
+    public string DisplayGuessProgress()
     {
-        List<char> guesses = GuessManager.GetGuessedLetters();
-        string mysteryWord = PlayerTurns.mysteryWord;
+        List<char> guesses = guessManager.guessedLetters;
+        string mysteryWord = playerTurns.mysteryWord;
         guessProgress = "";
 
         foreach (char letter in mysteryWord)

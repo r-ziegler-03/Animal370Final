@@ -13,8 +13,9 @@ class Program
         // you can delete this if/when you like
         ShowArguments(args);
         */
-        PlayerTurns.SetupGame("Hello");
-        PlayerTurns.RunGame();
+        PlayerTurns gameBruh = new PlayerTurns();
+        gameBruh.SetupGame("Hello");
+        gameBruh.RunGame();
     }
 
     // this is just an example of how to get the command
