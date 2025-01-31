@@ -2,11 +2,11 @@ using Xunit.Abstractions;
 
 namespace Cpsc370Final.Tests;
 
-public class UnitTestWordGenerator
+public class WordGenerator_Tests
 {
     private readonly ITestOutputHelper _testOutputHelper;
 
-    public UnitTestWordGenerator(ITestOutputHelper testOutputHelper)
+    public WordGenerator_Tests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
     }
